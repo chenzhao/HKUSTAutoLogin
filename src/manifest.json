@@ -1,0 +1,22 @@
+{
+  "name": "HKUST autologin",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Autologin pages need the ITSC account",
+  "browser_action": {
+    "default_icon": "icon.jpg"
+  },
+"content_scripts":[{
+	"matches":["http://*.ust.hk/*", 
+		"https://*.ust.hk/*"
+		],
+	"js":["content.js"]
+	}],
+  "permissions": [
+	"http://*.ust.hk/",
+	"background",
+	"tabs",
+	"webRequest",
+	"management"
+  ]
+}
