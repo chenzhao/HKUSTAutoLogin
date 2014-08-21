@@ -10,24 +10,22 @@ var submitForm = function(form){
 		submitAttr.click();
 	}
 }
-tryAutoLogin = function(){
-	console.log("tryAutoLogin");
+
+var tryAutoLogin = function(tried_times){
+	console.log("tryAutoLogin", tried_times);
 	var pwd = getPasswordInput();
-	if (!pwd){
-		console.log("no pwd found");
+	if (!pwd || !pwd.value){
+		console.log("no pwd");
+        if (tried_times<10) {
+            setTimeout(function(){tryAutoLogin(tried_times+1);}, 200);
+        }
 		return;
 	}
-	if (pwd.value==""){
-		console.log("pwd has no content");
-		return;
-	}
+    console.log('submit')
 	submitForm(pwd.form);
 }
 
-var n = 0;
-while(n<30){
-	setTimeout(tryAutoLogin, 100);
-	n += 1;
-}
+console.log('begin');
+tryAutoLogin(0);
 
 
